@@ -6,11 +6,11 @@ services:
   - docker
 #exec commands before do smt (i will start test here)
 before_install:
-  - docker build -t pavlob/docker-react -f Dockerfile.dev .
+  - docker build -t pavlon/docker-react -f Dockerfile.dev .
 
 # commands that will be executed to run tests
 #Travis C.I. is going to be watching the output of each of these commands and from each command if it
 #ever gets a return status code other than zero Travis is going to assume that our bill failed or that
 #our tests failed to run properly.
 script:
-  - docker run -e CI=true USERNAME/docker-react npm run test
+  - docker run -e CI=true pavlon/docker-react npm run test
