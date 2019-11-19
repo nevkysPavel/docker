@@ -1,0 +1,32 @@
+version: "3"
+
+#space - is important in config file
+# set name of container that i want to run
+services:
+  # set the name of the service/container
+  mywebapp:
+    #set the container . - means that a dockerfile in the save dir
+    build:
+      # when create a docker file but set the specific name need to use it:
+      # context -  is essentially specifying where
+      #we want all the files and folders for this image to be pulled from.
+
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      #the dot for the current folder outside the container to the folder inside the container.
+      - .:/app
+
+  #for tests I don't need to set port, because a server don't start
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    #Override a comand. that was set inside dockerfile
+    command: ["npm", "run", "test"]
