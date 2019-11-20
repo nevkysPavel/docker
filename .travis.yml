@@ -34,7 +34,7 @@ deploy:
   #classic beanstalk and say Hey I just uploaded this new zip file.
   #Use that to redeploy your application.
   #the name is taken from AWS-services-S3
-  bucket_name: "elasticbeanstalk-us-east-2-830635019267"
+  bucket_name: elasticbeanstalk-us-east-2-830635019267
   #the name same as the name of app, folder will be created automaticly in AWS
   bucket_path: "docker-react"
   # will deploy only when commit to master branch
