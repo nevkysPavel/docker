@@ -8,11 +8,11 @@ WORKDIR '/app'
 
 COPY package.json .
 
-RUN yarn install
+RUN npm install
 
 COPY package*.json ./
 
-RUN yarn run build
+RUN npm run build
 
 FROM nginx
 #set the port for AWS

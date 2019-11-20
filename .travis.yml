@@ -13,7 +13,7 @@ before_install:
 #ever gets a return status code other than zero Travis is going to assume that our bill failed or that
 #our tests failed to run properly.
 script:
-  - docker run -e CI=true pavlon/docker-react yarn run test
+  - docker run -e CI=true pavlon/docker-react npm run test
 
 #how to deploy app to AWS
 deploy:
