@@ -15,6 +15,8 @@ COPY . .
 RUN npm run build
 
 FROM nginx
+#set the port for AWS
+EXPOSE 80
 
 # copy builder      folder that I want copy    to this folder
 COPY --from=builder /app/build                 usr/share/nginx/html
