@@ -14,3 +14,34 @@ before_install:
 #our tests failed to run properly.
 script:
   - docker run -e CI=true pavlon/docker-react npm run test
+
+#how to deploy app to AWS
+deploy:
+  #And so by just saying provider elastic beanstalk we're essentially telling Travis see-I that hey we
+  #want you to use this set of instructions to attend to automatically deploy our application.
+  provider: elasticbeanstalk
+  # this take from website aws. Where repository was created
+  # DockerReact-env.hbnyamqykw.us-east-2.elasticbeanstalk.com
+  region: "us-east-2"
+  #the name of app, it too taken from AWS repository
+  app: "docker-react"
+  #the name of env, it too taken from AWS repository
+  env: "DockerReact-env"
+  #We're going to put in a bucket name so when Travis decides to deploy your codebase it's going to take
+  #all the files inside of your get Hubei repository that's going to zip them all up into one single file
+  #and then it's going to copy all them over to an skinny three bucket which is essentially a harddrive
+  #running on AWOS once it copies all those files over Travis cies then going to essentially poke at a
+  #classic beanstalk and say Hey I just uploaded this new zip file.
+  #Use that to redeploy your application.
+  #the name is taken from AWS-services-S3
+  bucket_name: "elasticbeanstalk-us-east-2-830635019267"
+  #the name same as the name of app, folder will be created automaticly in AWS
+  bucket_path: "docker-react"
+  # will deploy only when commit to master branch
+  on:
+    branch: master
+
+  # put keys from AWS, keys were received from AWS
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
